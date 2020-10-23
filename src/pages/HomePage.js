@@ -32,6 +32,10 @@ const HomePage = () => {
     return (
         <>
             <header className="header">
+                <div className="header__add-box">
+                    <button className="uk-button header__button">Add New</button>
+                </div>
+
                 <div className="header__text-box">
                     <h1 className="heading-primary">
                         <span className="heading-primary--main">Charlie's Cookbook</span>

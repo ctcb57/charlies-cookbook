@@ -1,28 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import crescendoApi from '../api/crescendoApi';
 import IngredientCard from '../components/IngredientCard';
+import DirectionsCard from '../components/DirectionsCard';
 
 
 const RecipeDetails = () => {
     let { id } = useParams();
 
     const [recipe, setRecipe] = useState({});
-    const [ingredients, setIngredients] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
         let matchingRecipe;
         let specials;
-        crescendoApi.get('recipes/')
+        crescendoApi.get(`recipes/${id}`)
             .then((response) => {
-                response.data.forEach((item) => {
-                    if (item.uuid === id) {
-                        matchingRecipe = item;
-                        return;
-                    }
-                })
+                matchingRecipe = response.data;
                 crescendoApi.get('specials/')
                     .then((response) => {
                         specials = response.data;
@@ -46,11 +42,21 @@ const RecipeDetails = () => {
                     .catch((err) => {}) 
             })
             .catch((err) => {})
-    }, [id])
+    }, [id, refresh])
+
+    const handleEditClick = () => {
+
+    }
 
     return (
         <>
             <header className="header">
+                <div className="header__add-box">
+                    <Link to={`/details/${id}/edit`}>
+                        <button className="uk-button header__button" onClick={handleEditClick}>Edit Recipe</button>
+                    </Link>
+                </div>
+                
                 <div className="header__text-box">
                     <h1 className="heading-primary">
                         <span className="heading-primary--main">{recipe.title}</span>
@@ -89,6 +95,12 @@ const RecipeDetails = () => {
             {
             recipe.title ?
             <IngredientCard recipe={recipe}/>
+            :
+            null
+            }
+            {
+            recipe.title ?
+            <DirectionsCard recipe={recipe} />
             :
             null
             }
