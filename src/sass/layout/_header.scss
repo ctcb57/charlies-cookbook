@@ -1,0 +1,20 @@
+.header {
+    height: 60vh;
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light, .8), rgba($color-primary-dark, .8));
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 45vh, 0 100%);
+
+    @include respond(phone) {
+        clip-path: polygon(0 0, 100% 0, 100% 85vh,  0 100%);
+    }
+
+    &__text-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+}

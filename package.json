@@ -16,14 +16,14 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.4",
-    "sass": "^1.27.0",
     "uikit": "^3.5.9"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "compile:sass": "node-sass src/sass/main.scss src/css/style.css -w"
   },
   "eslintConfig": {
     "extends": "react-app"

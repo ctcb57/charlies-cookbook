@@ -4,7 +4,14 @@ const HomePage = () => {
 
     return (
         <>
-            <p>Here we are</p>
+            <header className="header">
+                <div className="header__text-box">
+                    <h1 className="heading-primary">
+                        <span className="heading-primary--main">Charlie's Cookbook</span>
+                        <span className="heading-primary--sub">The World's Premier Culinary Guide</span>
+                    </h1>
+                </div>
+            </header>
         </>
     );
 };
