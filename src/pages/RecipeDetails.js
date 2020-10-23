@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import crescendoApi from '../api/crescendoApi';
+import IngredientCard from '../components/IngredientCard';
 
 
 const RecipeDetails = () => {
     let { id } = useParams();
 
     const [recipe, setRecipe] = useState({});
+    const [ingredients, setIngredients] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -39,6 +41,7 @@ const RecipeDetails = () => {
                         }
                         matchingRecipe.ingredients = newIngredientArray
                         setRecipe(matchingRecipe)
+                        setIsLoading(false)
                     })  
                     .catch((err) => {}) 
             })
@@ -47,8 +50,6 @@ const RecipeDetails = () => {
 
     return (
         <>
-            {recipe ? 
-            <>
             <header className="header">
                 <div className="header__text-box">
                     <h1 className="heading-primary">
@@ -85,7 +86,9 @@ const RecipeDetails = () => {
                     </div>
                 </div>
             </div>
-            </>
+            {
+            recipe.title ?
+            <IngredientCard recipe={recipe}/>
             :
             null
             }

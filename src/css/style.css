@@ -169,3 +169,7 @@ p {
   @media (max-width: 56.25em) {
     .section-search {
       padding: 20rem 0; } }
+
+.card-height {
+  height: 18em;
+}
