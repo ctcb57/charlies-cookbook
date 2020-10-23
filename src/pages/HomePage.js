@@ -31,7 +31,9 @@ const HomePage = () => {
         <>
             <header className="header">
                 <div className="header__add-box">
-                    <button className="uk-button header__button">Add New</button>
+                    <Link to={`/create`}>
+                        <button className="uk-button header__button">Add New</button>
+                    </Link>
                 </div>
 
                 <div className="header__text-box">
