@@ -65,6 +65,16 @@ const RecipeDetails = () => {
                 </div>
             </header>
 
+            <div className="uk-flex uk-flex-between uk-margin-bottom">
+                <ul className="uk-breadcrumb uk-margin-remove-bottom">
+                    <li>
+                        <Link to="/" className="breadcrumb">Home</Link>
+                    </li>
+                    <li>
+                        <span className="breadcrumb">Recipe</span>
+                    </li>
+                </ul>
+            </div>
             <div className="uk-card uk-card-default uk-card-small uk-card-body uk-margin">
                 <div className="uk-flex uk-flex-between uk-margin-small-bottom">
                     <h3>Details</h3>

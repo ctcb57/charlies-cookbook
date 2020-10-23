@@ -27,8 +27,6 @@ const HomePage = () => {
         }
     }
 
-    console.log(recipes);
-
     return (
         <>
             <header className="header">
@@ -50,13 +48,13 @@ const HomePage = () => {
                         <div className="uk-width-5-6">
                             <input 
                                 id="search-input"
-                                className="uk-input"
+                                className="uk-input input-text"
                                 type="text"
                                 placeholder="Search For Recipes"
                             />
                         </div>
                         <div className="uk-width-1-6">
-                            <button className="uk-button">
+                            <button className="uk-button button-label">
                                 search
                             </button>
                         </div>
@@ -71,9 +69,19 @@ const HomePage = () => {
             ))}
             <footer className="footer">
                 <div className="row">
+                <div className="col-1-of-3">
+                        <div className="footer__content">
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
                     <div className="col-1-of-3">
                         <div className="footer__content">
                             <p>&copy; Charlie Clark</p>
+                        </div>
+                    </div>
+                    <div className="col-1-of-3">
+                        <div className="footer__content">
+                            <p>&nbsp;</p>
                         </div>
                     </div>
                 </div>

@@ -2,8 +2,6 @@ import React from 'react';
 
 const IngredientCard = ({ recipe }) => {
 
-    console.log(recipe.ingredients)
-
     return (
         <>
             <div className="uk-card uk-card-default uk-card-small uk-card-body uk-margin">
@@ -14,7 +12,7 @@ const IngredientCard = ({ recipe }) => {
                     <ul className="uk-grid-small uk-child-width-1-2 uk-child-width-1-2@s" uk-sortable="handle: .uk-card" data-uk-grid>
                         {recipe.ingredients.map((item, index) => (
                             <li key={index} uk-tooltip="You can drag me">
-                                <div className="uk-card uk-card-default uk-card-small uk-card-body uk-card-hover card-height">
+                                <div className="uk-card uk-card-default uk-card-small uk-card-body uk-card-hover card-height-fixed">
                                     <div className="uk-child-width-1-1 uk-child-width-expand@s" data-uk-grid>
                                         <div>
                                             <h5>{item.name}</h5>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import crescendoApi from '../api/crescendoApi';
+import { Link } from 'react-router-dom';
 
 const EditRecipe = () => {
     let history = useHistory();
@@ -38,34 +39,47 @@ const EditRecipe = () => {
                     </h1>
                 </div>
             </header>
+            <div className="uk-flex uk-flex-between uk-margin-bottom">
+                <ul className="uk-breadcrumb uk-margin-remove-bottom">
+                    <li>
+                        <Link to="/" className="breadcrumb">Home</Link>
+                    </li>
+                    <li>
+                        <Link to={`/details/${id}`} className="breadcrumb">Recipe Details</Link>
+                    </li>
+                    <li>
+                        <span className="breadcrumb">Edit Recipe</span>
+                    </li>
+                </ul>
+            </div>
             <form>
                 <div className="uk-card uk-card-default uk-card-small uk-card-body uk-margin">
                     <div className="uk-flex uk-flex-between">
                         <div>
-                            <legend className="uk-card-title">Recipe Details</legend>
+                            <h5>Recipe Details</h5>
                         </div>
                     </div>
                     <hr/>
                     <div data-uk-grid>
                         <div className="uk-width-1-3">
-                            <label className="uk-form-label uk-margin-remove uk-text-meta" htmlFor="recipe-title">
+                            <label className="uk-form-label uk-margin-remove uk-text-meta breadcrumb" htmlFor="recipe-title">
                                 Title
                             </label>
                             <input 
                                 id="recipe-title"
-                                className="uk-input"
+                                className="uk-input input-text"
                                 type="text"
                                 value={recipe.title}
                                 onChange={(e) => setRecipe({ ...recipe, title: e.target.value})}
                             />
                         </div>
                         <div className="uk-width-2-3">
-                            <label className="uk-form-label uk-margin-remove uk-text-meta" htmlFor="recipe-description">
+                            <label className="uk-form-label uk-margin-remove uk-text-meta breadcrumb" htmlFor="recipe-description">
                                 Description
                             </label>
                             <input 
                                 id="recipe-description"
-                                className="uk-input"
+                                className="uk-input input-text"
                                 type="text"
                                 value={recipe.description}
                                 onChange={(e) => setRecipe({ ...recipe, description: e.target.value})}
@@ -74,36 +88,36 @@ const EditRecipe = () => {
                     </div>
                     <div data-uk-grid>
                         <div className="uk-width-1-3">
-                            <label className="uk-form-label uk-margin-remove uk-text-meta" htmlFor="recipe-servings">
+                            <label className="uk-form-label uk-margin-remove uk-text-meta breadcrumb" htmlFor="recipe-servings">
                                 Servings
                             </label>
                             <input 
                                 id="recipe-servings"
-                                className="uk-input"
+                                className="uk-input input-text"
                                 type="number"
                                 value={recipe.servings}
                                 onChange={(e) => setRecipe({ ...recipe, servings: e.target.value})}
                             />
                         </div>
                         <div className="uk-width-1-3">
-                            <label className="uk-form-label uk-margin-remove uk-text-meta" htmlFor="recipe-prep">
+                            <label className="uk-form-label uk-margin-remove uk-text-meta breadcrumb" htmlFor="recipe-prep">
                                 Prep Time
                             </label>
                             <input 
                                 id="recipe-prep"
-                                className="uk-input"
+                                className="uk-input input-text"
                                 type="number"
                                 value={recipe.prepTime}
                                 onChange={(e) => setRecipe({ ...recipe, prepTime: e.target.value})}
                             />
                         </div>
                         <div className="uk-width-1-3">
-                            <label className="uk-form-label uk-margin-remove uk-text-meta" htmlFor="recipe-cook">
+                            <label className="uk-form-label uk-margin-remove uk-text-meta breadcrumb" htmlFor="recipe-cook">
                                 Cook Time
                             </label>
                             <input 
                                 id="recipe-cook"
-                                className="uk-input"
+                                className="uk-input input-text"
                                 type="number"
                                 value={recipe.cookTime}
                                 onChange={(e) => setRecipe({ ...recipe, cookTime: e.target.value})}
@@ -113,7 +127,7 @@ const EditRecipe = () => {
                 </div>
                 <button 
                     type="submit"
-                    className="uk-button uk-button-primary uk-width-1-1"
+                    className="uk-button uk-button-primary uk-width-1-1 button-label"
                     onClick={(e) => handleSubmit(e)}
                 >
                     Save Recipe Details

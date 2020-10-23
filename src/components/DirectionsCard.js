@@ -11,7 +11,7 @@ const DirectionsCard = ({recipe}) => {
                 <div>
                     <ul className="uk-list uk-list-divider uk-list-decimal">
                         {recipe.directions.map((item, index) => (
-                            <li key={index}>
+                            <li key={index} className="breadcrumb">
                                 {item.optional ? `${item.instructions} (optional)` : `${item.instructions}`}
                             </li>
                         ))}

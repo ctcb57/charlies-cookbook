@@ -43,6 +43,15 @@ p {
   font-size: 1.5rem !important;
   font-weight: 400; }
 
+.breadcrumb {
+  font-size: 1.5rem !important; }
+
+.input-text {
+  font-size: 1.3rem !important; }
+
+.button-label {
+  font-size: 1.7rem !important; }
+
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
@@ -179,3 +188,6 @@ p {
   @media (max-width: 56.25em) {
     .section-search {
       padding: 20rem 0; } }
+
+.card-height-fixed {
+  height: 18rem; }
