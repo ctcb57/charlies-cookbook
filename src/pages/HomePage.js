@@ -32,7 +32,7 @@ const HomePage = () => {
             <header className="header">
                 <div className="header__add-box">
                     <Link to={`/create`}>
-                        <button className="uk-button header__button">Add New</button>
+                        <button className="btn-text header__button">Add New</button>
                     </Link>
                 </div>
 
@@ -56,7 +56,7 @@ const HomePage = () => {
                             />
                         </div>
                         <div className="uk-width-1-6">
-                            <button className="uk-button button-label">
+                            <button className="uk-button uk-button-primary">
                                 search
                             </button>
                         </div>

@@ -106,6 +106,25 @@ p {
     opacity: 1;
     transform: translate(0); } }
 
+.btn-text:link, .btn-text:visited {
+  font-size: 1.6rem;
+  color: #55c57a;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #000;
+  padding: 3px;
+  transition: all .2s; }
+
+.btn-text:hover {
+  background-color: #28b485;
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px); }
+
+.btn-text:active {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transform: translateY(0); }
+
 .header {
   height: 60vh;
   background-image: linear-gradient(to right top, rgba(41, 152, 255, 0.5), rgba(86, 67, 250, 0.5)), url("https://images.unsplash.com/photo-1514986888952-8cd320577b68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1955&q=80");
@@ -131,7 +150,8 @@ p {
     top: 4rem;
     left: 4rem; }
   .header__button {
-    height: 3.5rem; }
+    height: 3.5rem;
+    width: 7rem; }
 
 .row {
   max-width: 114rem;
