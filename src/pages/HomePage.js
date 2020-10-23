@@ -60,11 +60,20 @@ const HomePage = () => {
                 </div>
             </form>
             {recipes.map((recipe, index) => (
-                <Link to={`details/${recipe.id}`}>
-                    <RecipeCard key={index} recipe={recipe} />
+                <Link to={`details/${recipe.uuid}`} key={recipe.uuid}>
+                    <RecipeCard recipe={recipe} />
                 </Link>
                 
             ))}
+            <footer className="footer">
+                <div className="row">
+                    <div className="col-1-of-3">
+                        <div className="footer__content">
+                            <p>&copy; Charlie Clark</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </>
     );
 };
