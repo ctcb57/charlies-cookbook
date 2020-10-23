@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import Select, { createFilter } from 'react-select';
 import crescendoApi from '../api/crescendoApi';
-import AddIngredientModal from '../components/AddIngredientModal';
+import DirectionsCard from '../components/DirectionsCard';
 
 const CreateRecipe = () => {
+    let history = useHistory()
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [servings, setServings] = useState("");
@@ -13,18 +16,62 @@ const CreateRecipe = () => {
     const [ingredientName, setIngredientName] = useState("")
     const [ingredientAmount, setIngredientAmount] = useState("");
     const [ingredientMeasurement, setIngredientMeasurement] = useState("");
+    const [directionInstruction, setDirectionInstruction] = useState("");
+    const [isOptional, setIsOptional] = useState(false);
+    const [directions, setDirections] = useState([]);
     const [reload, setReload] = useState(false);
+
+    const options = [
+        { value: true, label: "Yes" },
+        { value: false, label: "No" }
+    ]
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        let payload;
+        if (title.length 
+            && description.length 
+            && servings.length 
+            && prepTime.length 
+            && cookTime.length 
+            && ingredients.length 
+            && directions.length){
+                payload = {
+                    title: title,
+                    description: description,
+                    images:{},
+                    servings: servings,
+                    prepTime: prepTime,
+                    cookTime: cookTime,
+                    ingredients: ingredients,
+                    directions: directions
+                }
+
+                console.log(payload)
+
+                crescendoApi.post('/recipes', payload)
+                    .then((response) => {
+                        setDescription("");
+                        setTitle("");
+                        setServings("");
+                        setPrepTime("");
+                        setCookTime("");
+                        setIngredients([]);
+                        setDirections([]);
+                        alert('Recipe created successfully')
+                        history.push('/');
+                    })
+            }
     }
 
     const handleNewIngredient = (e) => {
         e.preventDefault();
         let ingredient = {
-            name: ingredientName,
-            amount: ingredientAmount,
-            measurement: ingredientMeasurement
+            Ingredient:{
+                name: ingredientName,
+                amount: ingredientAmount,
+                measurement: ingredientMeasurement
+            }
         }
         let newArray = []
         newArray = ingredients
@@ -34,6 +81,25 @@ const CreateRecipe = () => {
         setIngredientAmount("")
         setIngredientMeasurement("")
     }
+
+    const handleNewDirection = (e) => {
+        e.preventDefault();
+        let direction = {
+            Direction: {
+                instructions: directionInstruction,
+                optional: isOptional
+            }
+        }
+        console.log(direction)
+        let newArray = []
+        newArray = directions
+        newArray.push(direction)
+        setDirections(newArray)
+        setDirectionInstruction("")
+        setIsOptional(false)
+    }
+
+    console.log(ingredients)
 
     return (
         <>
@@ -155,13 +221,13 @@ const CreateRecipe = () => {
                     {ingredients.map((item, index) => (
                         <div className="uk-margin" key={index}>
                             <div className="uk-inline uk-width-1-3 uk-margin-right">
-                                <p>{item.name}</p>
+                                <p>{item.Ingredient.name}</p>
                             </div>
                             <div className="uk-inline uk-width-1-4 uk-margin-right">
-                                <p>{item.amount}</p>
+                                <p>{item.Ingredient.amount}</p>
                             </div>
                             <div className="uk-inline uk-width-1-4 uk-margin-left">
-                                <p>{item.measurement}</p>
+                                <p>{item.Ingredient.measurement}</p>
                             </div>
                         </div>
                     ))}
@@ -203,6 +269,55 @@ const CreateRecipe = () => {
                     className="uk-button uk-button-primary uk-width-1-1 uk-margin-small-top"
                     onClick={(e) => handleNewIngredient(e)}
                 >Add Ingredient</button>
+            </div>
+            <div className="uk-card uk-card-default uk-card-small uk-card-body uk-margin">
+                <div className="uk-flex uk-flex-between">
+                    <div>
+                        <legend className="uk-card-title">
+                        Directions
+                        </legend>
+                    </div>
+                </div>
+                <hr />
+                {directions.length ? 
+                <div>
+                    <ul className="uk-list uk-list-divider uk-list-decimal">
+                        {directions.map((item, index) => (
+                            <li key={index} className="breadcrumb">
+                                {item.Direction.optional ? `${item.Direction.instructions} (optional)` : `${item.Direction.instructions}`}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                :
+                null
+                }
+                <div className="uk-margin">
+                    <div className="uk-inline uk-width-3-4 uk-margin-right">
+                        <label className="uk-form-label">Instructions</label>
+                        <input 
+                            className="uk-input"
+                            value={directionInstruction}
+                            onChange={(e) => setDirectionInstruction(e.target.value)}
+                            type="text"
+                        />
+                    </div>
+                    <div className="uk-inline uk-width-1-6">
+                        <label className="uk-form-label">Optional?</label>
+                        <Select 
+                            filterOption={createFilter({ ignoreAccents: false})}
+                            options={options}
+                            value={options.find(
+                                (option) => option.value === isOptional
+                            )}
+                            onChange={(e) => setIsOptional(e.value)}
+                        />
+                    </div>
+                </div>
+                <button 
+                    className="uk-button uk-button-primary uk-width-1-1 uk-margin-small-top"
+                    onClick={(e) => handleNewDirection(e)}
+                >Add Direction</button>
             </div>
             <button 
                 type="submit"

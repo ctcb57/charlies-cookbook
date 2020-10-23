@@ -1,6 +1,7 @@
 import React from 'react';
 
 const IngredientCard = ({ recipe }) => {
+    console.log(recipe)
 
     return (
         <>
