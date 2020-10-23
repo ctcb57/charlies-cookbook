@@ -1,6 +1,33 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import crescendoApi from '../api/crescendoApi';
+import { useHistory } from 'react-router-dom';
+import RecipeCard from "../components/RecipeCard";
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
+    const [searchTerm, setSearchTerm] = useState("")
+    const [recipes, setRecipes] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setIsLoading(true);
+        crescendoApi.get('/recipes')
+            .then((response) => {
+                setRecipes(response.data);
+                setIsLoading(false);
+            })
+            .catch((err) => {});
+    }, [])
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+
+        if (searchTerm.length > 0) {
+
+        }
+    }
+
+    console.log(recipes);
 
     return (
         <>
@@ -12,6 +39,32 @@ const HomePage = () => {
                     </h1>
                 </div>
             </header>
+
+            <form>
+                <div className="uk-card uk-card-default uk-card-small uk-card-body uk-margin">
+                    <div className="uk-child-width-expand@s" data-uk-grid>
+                        <div className="uk-width-5-6">
+                            <input 
+                                id="search-input"
+                                className="uk-input"
+                                type="text"
+                                placeholder="Search For Recipes"
+                            />
+                        </div>
+                        <div className="uk-width-1-6">
+                            <button className="uk-button">
+                                search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {recipes.map((recipe, index) => (
+                <Link to={`details/${recipe.id}`}>
+                    <RecipeCard key={index} recipe={recipe} />
+                </Link>
+                
+            ))}
         </>
     );
 };
