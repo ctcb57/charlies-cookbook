@@ -112,6 +112,7 @@ p {
   display: inline-block;
   text-decoration: none;
   border-bottom: 1px solid #000;
+  border-radius: 10rem;
   padding: 3px;
   transition: all .2s; }
 
@@ -124,6 +125,9 @@ p {
 .btn-text:active {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   transform: translateY(0); }
+
+.uk-button {
+  font-size: 1.8rem; }
 
 .header {
   height: 60vh;

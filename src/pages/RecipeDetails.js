@@ -53,7 +53,7 @@ const RecipeDetails = () => {
             <header className="header">
                 <div className="header__add-box">
                     <Link to={`/details/${id}/edit`}>
-                        <button className="uk-button header__button" onClick={handleEditClick}>Edit Recipe</button>
+                        <button className="btn-text header__button" onClick={handleEditClick}>Edit Recipe</button>
                     </Link>
                 </div>
                 

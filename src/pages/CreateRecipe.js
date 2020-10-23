@@ -197,9 +197,7 @@ const CreateRecipe = () => {
             <div className="uk-card uk-card-default uk-card-small uk-card-body uk-margin">
                 <div className="uk-flex uk-flex-between">
                     <div>
-                        <legend className="uk-card-title">
-                        Ingredients
-                        </legend>
+                        <h5>Ingredients</h5>
                     </div>
                 </div>
                 <hr />
@@ -238,27 +236,27 @@ const CreateRecipe = () => {
                 <hr />
                 <div className="uk-margin">
                     <div className="uk-inline uk-width-1-3 uk-margin-right">
-                        <label className="uk-form-label">Name</label>
+                        <label className="uk-form-label uk-margin-remove uk-text-meta breadcrumb">Name</label>
                         <input 
-                            className="uk-input"
+                            className="uk-input input-text"
                             value={ingredientName}
                             onChange={(e) => setIngredientName(e.target.value)}
                             type="text"
                         />
                     </div>
                     <div className="uk-inline uk-width-1-4 uk-margin-right">
-                        <label className="uk-form-label">Amount</label>
+                        <label className="uk-form-label uk-margin-remove uk-text-meta breadcrumb">Amount</label>
                         <input 
-                            className="uk-input"
+                            className="uk-input input-text"
                             value={ingredientAmount}
                             onChange={(e) => setIngredientAmount(e.target.value)}
                             type="number"
                         />
                     </div>
                     <div className="uk-inline uk-width-1-4 uk-margin-left">
-                        <label className="uk-form-label">Measurement</label>
+                        <label className="uk-form-label uk-margin-remove uk-text-meta breadcrumb">Measurement</label>
                         <input 
-                            className="uk-input"
+                            className="uk-input input-text"
                             value={ingredientMeasurement}
                             onChange={(e) => setIngredientMeasurement(e.target.value)}
                             type="text"
@@ -273,9 +271,9 @@ const CreateRecipe = () => {
             <div className="uk-card uk-card-default uk-card-small uk-card-body uk-margin">
                 <div className="uk-flex uk-flex-between">
                     <div>
-                        <legend className="uk-card-title">
+                        <h5>
                         Directions
-                        </legend>
+                        </h5>
                     </div>
                 </div>
                 <hr />
@@ -294,16 +292,16 @@ const CreateRecipe = () => {
                 }
                 <div className="uk-margin">
                     <div className="uk-inline uk-width-3-4 uk-margin-right">
-                        <label className="uk-form-label">Instructions</label>
+                        <label className="uk-form-label uk-margin-remove uk-text-meta breadcrumb">Instructions</label>
                         <input 
-                            className="uk-input"
+                            className="uk-input input-text"
                             value={directionInstruction}
                             onChange={(e) => setDirectionInstruction(e.target.value)}
                             type="text"
                         />
                     </div>
                     <div className="uk-inline uk-width-1-6">
-                        <label className="uk-form-label">Optional?</label>
+                        <label className="uuk-form-label uk-margin-remove uk-text-meta breadcrumb">Optional?</label>
                         <Select 
                             filterOption={createFilter({ ignoreAccents: false})}
                             options={options}
